@@ -44,7 +44,7 @@ Livestreams are sorted based on their scores, with higher scores indicating high
 3. Install dependencies for each component (`backend`, `database`, `frontend`).
 4. Run the backend server using `npm run start` within the `backend` directory.
 5. Install pocketbase in the database directory then start pocketbase by using `pocketbase serve` within the `database` directory.
-6. Import the database script into your pocketbase db.
+6. Import the database script `/database/pb_schema.json` into your pocketbase db.
 7. Start the frontend server by using `npm run dev` in the `frontend` directory (Not ready for production).
 
 ## What Im Still Planning on Adding
@@ -78,7 +78,7 @@ Stay tuned for updates as we continue to build and improve our platform. Your su
 - JWT keys expire every hour.
 - This platform is a work in progress. While it supports major functionalities such as streaming and dashboard features, optimizations and additional functionalities are still needed.
 
-*Note: The development of these features and pages will be done with the community in mind, ensuring that i provide a platform that is inclusive, accessible, and enjoyable for everyone.*
+*Note: The development of these features and pages will be done with the community in mind, ensuring that we provide a platform that is inclusive, accessible, and enjoyable for everyone.*
 
 Feel free to contribute to the development of this livestreaming platform! If you have any questions or feedback, please don't hesitate to reach out.
 
