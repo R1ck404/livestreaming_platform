@@ -78,7 +78,7 @@ Stay tuned for updates as we continue to build and improve our platform. Your su
 - JWT keys expire every hour.
 - This platform is a work in progress. While it supports major functionalities such as streaming and dashboard features, optimizations and additional functionalities are still needed.
 
-*Note: The development of these features and pages will be done with the community in mind, ensuring that we provide a platform that is inclusive, accessible, and enjoyable for everyone.*
+*Note: The development of these features and pages will be done with the community in mind, ensuring that i provide a platform that is inclusive, accessible, and enjoyable for everyone.*
 
 Feel free to contribute to the development of this livestreaming platform! If you have any questions or feedback, please don't hesitate to reach out.
 
