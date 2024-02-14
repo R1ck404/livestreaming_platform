@@ -47,7 +47,7 @@ export default function StreamPreview(
 
             <div className="flex items-center space-x-2">
                 <Avatar>
-                    <AvatarFallback>XD</AvatarFallback>
+                    <AvatarFallback>{streamer.charAt(0).toUpperCase()}</AvatarFallback>
                     <AvatarImage src="" />
                 </Avatar>
                 <div className="flex flex-col">

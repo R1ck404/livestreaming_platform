@@ -31,11 +31,11 @@ export default function PopularStreamers() {
         <section className='h-full relative rounded-lg flex flex-col px-6'>
             <h1 className='font-bold text-2xl'>Popular Streamers</h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-2">
                 {isClient ? (
                     <>
                         {streams.length === 0 && (
-                            <div className="w-1/5 h-64">
+                            <div className="w-full h-64">
                                 <h1>
                                     No streamers are live right now
                                 </h1>
@@ -66,7 +66,7 @@ const LoadingSkeleton = () => {
     return (
         <>
             {Array.from({ length: 5 }).map((_, i) => (
-                <div className="space-y-1 w-1/5" key={i}>
+                <div className="space-y-1 w-full" key={i}>
 
                     <Skeleton className="w-full h-48" />
                     <Skeleton className="w-52 h-6" />

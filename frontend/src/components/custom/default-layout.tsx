@@ -21,7 +21,7 @@ export default function DefaultLayout({ children, className }: DefaultLayoutProp
                 <NavigationBar isUserAuthenticated={client.authStore.isValid} />
                 <section className={
                     cn(
-                        "w-full overflow-scroll flex flex-col h-full pb-16",
+                        "w-full overflow-scroll flex flex-col h-full pb-24",
                         className
                     )
                 }>

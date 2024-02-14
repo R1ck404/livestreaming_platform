@@ -81,7 +81,7 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
     }
 
     return (
-        <div className="rounded-xl h-96 sm:h-96 md:h-[35rem] xl:h-[50rem]">
+        <div className="rounded-xl h-96 sm:h-96 md:h-[35rem] xl:h-auto">
             {stream_key !== null ? (
                 <div className="flex flex-col h-full">
                     {isLive ? (
