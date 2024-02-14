@@ -1,0 +1,16 @@
+{
+  "name": "rtmp-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-media-server": "^2.6.2",
+    "pocketbase": "^0.21.1"
+  }
+}
