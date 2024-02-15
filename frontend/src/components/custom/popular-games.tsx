@@ -34,6 +34,13 @@ export default function PopularGames() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-2">
                 {isClient ? (
                     <>
+                        {availableGames?.length === 0 && (
+                            <div className="w-full h-64">
+                                <h1>
+                                    No games found.
+                                </h1>
+                            </div>
+                        )}
                         {availableGames.map((game, i) => (
                             <GamePreview
                                 key={i}

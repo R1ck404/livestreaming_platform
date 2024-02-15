@@ -11,6 +11,7 @@ import DefaultLayout from '@/components/custom/default-layout';
 import { fetchMostPopularStream, fetchStreams } from '@/lib/nms/NMSHelper';
 import { createBrowserClient } from '@/lib/pocketbase/createBrowserClient';
 import { useEffect, useState } from 'react';
+import RecommendedStreamers from '@/components/custom/recommended-streamers';
 
 export default function Index() {
     return (
@@ -18,6 +19,7 @@ export default function Index() {
             <MainHero />
             <PopularStreamers />
             <PopularGames />
+            <RecommendedStreamers />
         </DefaultLayout>
     )
 }

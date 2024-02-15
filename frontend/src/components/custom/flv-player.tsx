@@ -7,9 +7,10 @@ import { cn } from '@/lib/utils';
 interface FLVPlayerProps {
     url: string;
     className?: string;
+    onLoaded?: () => void;
 }
 
-const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className }) => {
+const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className, onLoaded }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -30,6 +31,8 @@ const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className }) => {
             player.attachMediaElement(videoRef.current);
             player.load();
             player.play();
+
+            if (onLoaded) onLoaded();
 
             player.on('error', (err) => {
                 console.log(err);

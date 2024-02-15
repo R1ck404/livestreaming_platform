@@ -115,7 +115,8 @@ export default function Page() {
             return;
         }
 
-        const name = saveImage.split("/").pop();
+        // const name = saveImage?.split("/").pop();
+        const name = image ? image.name : saveImage?.split("/").pop();
         const existingStreamData = {
             title: inputFormdata.get('title'),
             description: inputFormdata.get('description'),

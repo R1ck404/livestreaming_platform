@@ -17,6 +17,7 @@ export default function Page() {
     const [isClient, setIsClient] = useState(false);
     const [user, setUser] = useState<any>(null);
     const [stream, setStream] = useState<any>(null);
+    const [isFollowing, setIsFollowing] = useState(false);
     const pathname = usePathname();
     const username = pathname?.split("/").slice(-1)[0];
     const name = username?.toUpperCase() ?? "USERNAME";
@@ -32,13 +33,27 @@ export default function Page() {
         setIsClient(true);
 
         const fetchUser = async () => {
-            const user = await client.collection('users').getFirstListItem(`username="${username}"`);
+            try {
 
-            if (!user) return;
+                const user = await client.collection('users').getFirstListItem(`username="${username}"`).then((usr) => {
+                    console.log(usr);
+                    return usr;
+                }, (e) => {
+                    console.log(e);
+                    return null;
+                });
 
-            const followers = await client.collection('followers').getFullList({ filter: `following="${user.id}"` })
-            user.followers = followers.length;
-            setUser(user);
+                if (!user) return;
+
+                const followers = await client.collection('followers').getFullList({ filter: `following.id="${user.id}"` }).catch(() => null);
+
+                if (!followers) return;
+
+                user.followers = followers.length;
+                setUser(user);
+            } catch (error) {
+
+            }
         };
 
         fetchUser();
@@ -46,22 +61,75 @@ export default function Page() {
 
     useEffect(() => {
         const fetchStream = async () => {
-            const stream = await client.collection('streams').getFirstListItem(`user="${user.id}"`);
+            try {
+                const stream = await client.collection('streams').getFirstListItem(`user="${user.id}"`);
 
-            if (!stream) {
+                if (!stream) {
+                    setStream({
+                        exists: false
+                    });
+                    return;
+                }
+
+                const thumbnail = await client.files.getUrl(stream, stream.thumbnail);
+                stream.thumbnail = thumbnail;
+                setStream(stream);
+            } catch (error) {
                 setStream({
                     exists: false
                 });
-                return;
             }
-
-            const thumbnail = await client.files.getUrl(stream, stream.thumbnail);
-            stream.thumbnail = thumbnail;
-            setStream(stream);
         };
 
         if (user) fetchStream();
     }, [user]);
+
+    // const getFollowing = async () => {
+    //     const user_id = client.authStore.model?.id;
+    //     if (!user_id) return;
+
+    //     try {
+    //         if (!user) return;
+    //         console.log(user.id)
+    //         console.log(user_id)
+
+    //         const following = await client.collection('followers').getFirstListItem(`follower.id="${user_id}" && following.id="${user?.id}"`).finally(() => null);
+    //         console.log(following);
+    //         if (following) {
+    //             setIsFollowing(true);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    // const followStreamer = async () => {
+    //     const user_id = client.authStore.model?.id;
+    //     if (!user_id) return;
+
+    //     if (isFollowing) {
+    //         if (!user) return;
+    //         try {
+    //             const following = await client.collection('followers').getFullList({ filter: `follower.id="${user_id}" && following.id="${user?.id}"` });
+    //             await client.collection('followers').delete(following[0].id);
+    //         } catch (error) {
+
+    //         }
+    //         setIsFollowing(false);
+    //     } else {
+    //         if (!user) return;
+    //         try {
+    //             await client.collection('followers').create({ follower: user_id, following: user?.id });
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //         setIsFollowing(true);
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     getFollowing();
+    // }, []);
 
     return (
         <DefaultLayout>
@@ -97,8 +165,8 @@ export default function Page() {
                                             <Heart size={24} />
                                         </Button>
                                     </div>
-                                    <Button type="button" variant="accent">
-                                        Follow
+                                    <Button type="button" variant="accent" onClick={() => { }}>
+                                        {isFollowing ? "Unfollow" : "Follow"}
                                     </Button>
                                 </div>
                             </>

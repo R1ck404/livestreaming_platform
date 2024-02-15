@@ -14,33 +14,6 @@ type SidebarProps = {
     isUserAuthenticated: boolean;
 }
 
-const users = [
-    {
-        id: 1,
-        name: "Tony",
-        username: "shadcn",
-        avatar: "",
-        activity: "Just chatting",
-        isLive: true,
-    },
-    {
-        id: 2,
-        name: "Bob",
-        username: "shadcn",
-        avatar: "",
-        activity: "Playing Valorant",
-        isLive: false,
-    },
-    {
-        id: 3,
-        name: "Tobo",
-        username: "shadcn",
-        avatar: "",
-        activity: "Just chatting",
-        isLive: false,
-    },
-];
-
 export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
     // const { sidebarCollapsed, setSidebarCollapsed } = usePageUserContext();
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -51,7 +24,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
     }, [])
 
     return (
-        <aside className={`flex flex-col ${sidebarCollapsed ? "w-[4.5rem]" : " w-72"} transition-all ease-in-out bg-card`}>
+        <aside className={`flex flex-col ${sidebarCollapsed ? "w-[4.5rem]" : "w-72 fixed z-[1002] sm:relative"} transition-all ease-in-out bg-card`}>
             <div className="h-16 py-4 px-6 border-r border-b">
                 <h1 className="text-2xl font-bold">Stream</h1>
             </div>
@@ -99,14 +72,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
 
                                     <hr className="mx-4 mb-4" />
                                     <div className="px-4 space-y-2">
-                                        {users.map((user) => (
-                                            <div key={user.id} className="flex items-center space-x-2">
-                                                <Avatar className={`${user.isLive ? "p-[2px] ring-2 ring-red-500" : ""}`}>
-                                                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                                                    <AvatarImage src={user.avatar} />
-                                                </Avatar>
-                                            </div>
-                                        ))}
+                                        <FollowingStreamersSidebar collapsed={true} />
                                     </div>
                                 </>
                             ) : (
@@ -141,14 +107,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                             {sidebarCollapsed ? (
                                 <div className="px-4">
                                     <div className="flex flex-col space-y-2 ">
-                                        {users.map((user) => (
-                                            <div key={user.id} className="flex items-center space-x-2">
-                                                <Avatar className={`${user.isLive ? "p-[2px] ring-2 ring-red-500" : ""}`}>
-                                                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                                                    <AvatarImage src={user.avatar} />
-                                                </Avatar>
-                                            </div>
-                                        ))}
+                                        <RecommendedStreamersSidebar collapsed={true} />
                                     </div>
                                 </div>
                             ) : (
@@ -170,7 +129,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                             )}
                         </div>
 
-                        <div className="flex flex-col space-y-4 mx-4 !mt-auto">
+                        <div className={`flex flex-col space-y-4 mx-4 !mt-auto ${sidebarCollapsed ? '' : '!mb-8 sm:!mb-0'}`}>
                             <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`} onClick={
                                 () => setSidebarCollapsed(!sidebarCollapsed)
                             }>

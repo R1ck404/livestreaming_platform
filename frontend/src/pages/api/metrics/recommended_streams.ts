@@ -15,22 +15,29 @@ export default async function handler(
 ) {
     const pocketbaseClient = createServerClient();
 
-    const { user_id } = _req.body;
+    const { user_id, should_be_live } = _req.body;
+
     if (!user_id) {
         return res.status(400).json({ error: "All fields are required" });
     }
 
     try {
-        await limiter.check(res, 50, "CACHE_TOKEN"); // 5 requests per minute
+        await limiter.check(res, 50, "token"); // 50 requests per minute
 
-        const user_metrics = await pocketbaseClient.collection("user_metrics").getList(1, 50, { filter: `user="${user_id}"` });
-        console.log(user_metrics);
-        const streams = await pocketbaseClient.collection("streams").getList(1, 25);
-        const recommended_streams = recommendStreams(user_metrics.items as any, streams.items as any, 3);
+        const fetch_live_or_all = should_be_live !== undefined ? `is_live=${should_be_live}` : "(is_live=false || is_live=true)";
+        const user_metrics = await pocketbaseClient.collection("user_metrics").getList(1, 50, { filter: `user="${user_id}"` }).catch(() => null);
+        const streams = await pocketbaseClient.collection("streams").getList(1, 25, { filter: fetch_live_or_all }).catch((e) => console.log(e));
+
+        if (!user_metrics || !streams) {
+            return res.status(404).json({ error: "Not found" });
+        }
+
+        const recommended_streams = await recommendStreams(user_metrics.items as any, streams.items as any, 3);
 
         res.status(200).json({ streams: recommended_streams });
 
-    } catch {
+    } catch (e) {
+        console.log(e);
         res.status(429).json({ error: "Rate limit exceeded" });
     }
 }

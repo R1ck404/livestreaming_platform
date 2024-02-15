@@ -56,6 +56,19 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
         getFollowing();
     }, []);
 
+    const addMetrics = async (type: string) => {
+        const user_id = client.authStore.model?.id;
+        if (!user_id) return;
+
+        await fetch("/api/metrics/add_metrics", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ user_id, stream_key, type })
+        });
+    }
+
     const followStreamer = async () => {
         const user_id = client.authStore.model?.id;
         if (!user_id) return;
@@ -73,6 +86,8 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
             console.log('following');
             try {
                 await client.collection('followers').create({ follower: user_id, following: streamer?.id });
+
+                addMetrics('follow');
             } catch (error) {
                 console.log(error);
             }
@@ -85,7 +100,11 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
             {stream_key !== null ? (
                 <div className="flex flex-col h-full">
                     {isLive ? (
-                        <FLVPlayer url={src} />
+                        <FLVPlayer url={src} onLoaded={
+                            () => {
+                                addMetrics('view');
+                            }
+                        } />
                     ) : (
                         <div className="relative w-full h-full">
                             <Skeleton className="w-full h-full" />

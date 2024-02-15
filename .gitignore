@@ -1,2 +1,4 @@
 /database/pb_data/*
 /database/pb_migrations/*
+../node_modules/*
+**/node_modules/*

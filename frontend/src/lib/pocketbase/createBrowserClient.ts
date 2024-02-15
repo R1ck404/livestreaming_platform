@@ -27,6 +27,15 @@ export function createBrowserClient() {
         document.cookie = singletonClient!.authStore.exportToCookie({
             httpOnly: false,
         });
+
+        try {
+            // get an up-to-date auth store state by verifying and refreshing the loaded auth model (if any)
+            singletonClient!.authStore.isValid && singletonClient!.collection('users').authRefresh();
+        } catch (_) {
+            // clear the auth store on failed refresh
+            singletonClient!.authStore.clear();
+        }
+
     });
 
     return singletonClient;

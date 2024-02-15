@@ -7,17 +7,16 @@ interface Stream {
 }
 
 interface UserMetric {
-    streamer: string;
+    stream: string;
     interaction_type: 'view' | 'like' | 'share' | 'follow' | 'chat';
     stream_tags: { value: string }[];
 }
 
-
 function getStreamScore(userMetrics: UserMetric[], stream: Stream): number {
     let score = 0;
 
-    userMetrics.forEach(metric => {
-        if (metric.streamer === stream.id) {
+    userMetrics && userMetrics.length > 0 && userMetrics.forEach(metric => {
+        if (metric.stream === stream.id) {
             switch (metric.interaction_type) {
                 case 'view': score += 1; break;
                 case 'like': score += 2; break;
@@ -28,7 +27,7 @@ function getStreamScore(userMetrics: UserMetric[], stream: Stream): number {
         }
     });
 
-    stream.tags.forEach(tag => {
+    stream.tags && stream.tags.length > 0 && stream.tags?.forEach(tag => {
         if (userMetrics.some(metric => metric.stream_tags.some(stag => stag.value === tag.value))) {
             score += 5;
         }
@@ -39,13 +38,19 @@ function getStreamScore(userMetrics: UserMetric[], stream: Stream): number {
     return score;
 }
 
-function recommendStreams(userMetrics: UserMetric[], streams: Stream[], count: number): Stream[] {
+async function recommendStreams(userMetrics: UserMetric[], streams: Stream[], count: number): Promise<Stream[]> {
     const scoredStreams = streams.map(stream => ({
         ...stream,
         score: getStreamScore(userMetrics, stream)
     }));
 
-    return scoredStreams.sort((a, b) => b.score - a.score).slice(0, count);
+    return scoredStreams.sort((a, b) => {
+        if (a.is_live === b.is_live) {
+            return b.score - a.score;
+        }
+
+        return (b.is_live ? 1 : 0) - (a.is_live ? 1 : 0);
+    }).slice(0, count);
 }
 
 export { recommendStreams };

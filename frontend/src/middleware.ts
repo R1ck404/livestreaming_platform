@@ -29,6 +29,6 @@ export const config = {
          * - login (login route)
          * - / (root path)
          */
-        "/((?!api|_next/static|_next/image|favicon.ico|login|stream|explore|profile|search|games|$).*)",
+        "/((?!api|_next/static|_next/image|favicon.ico|login|register|stream|explore|profile|search|games|$).*)",
     ],
 };

@@ -54,6 +54,15 @@ export default function Page() {
                     </div>
                     <Button type="submit" variant="accent" className="w-full">Login</Button>
                 </form>
+
+                <div className="mt-2 mx-2 text-accent flex justify-between">
+                    <Link href="/register">
+                        Register
+                    </Link>
+                    <Link href="/forgot-password">
+                        Forgot password
+                    </Link>
+                </div>
             </div>
         </div>
     )

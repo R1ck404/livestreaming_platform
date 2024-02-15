@@ -5,7 +5,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { createBrowserClient } from '@/lib/pocketbase/createBrowserClient';
 import { useEffect, useState } from 'react';
 
-export default function FollowingStreamersSidebar() {
+type FollowingStreamersSidebarProps = {
+    collapsed?: boolean;
+}
+
+export default function FollowingStreamersSidebar({ collapsed }: FollowingStreamersSidebarProps) {
     const client = createBrowserClient();
     const [followingUsers, setFollowingUsers] = useState<any[]>([]);
     const [isFetching, setIsFetching] = useState(true);
@@ -49,19 +53,23 @@ export default function FollowingStreamersSidebar() {
                         <AvatarFallback>{user.username.charAt(0).toUpperCase()}</AvatarFallback>
                         <AvatarImage src={user.avatar} />
                     </Avatar>
-                    <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-gray-200">
-                            {user.username}
-                        </span>
-                        <span className="text-xs text-gray-400">
-                            {user.stream && user.stream.is_live ? (user.stream.title as string).slice(0, 20) : "Offline"}
-                        </span>
-                    </div>
-                    {user.stream && user.stream.is_live && (
-                        <span className="!ml-4 text-xs font-semibold text-gray-200 flex items-center">
-                            <span className="w-2 h-2 ml-1 rounded-full bg-accent mr-2"></span>
-                            <span>{user.stream.viewers ?? 0}</span>
-                        </span>
+                    {!collapsed && (
+                        <>
+                            <div className="flex flex-col">
+                                <span className="text-sm font-semibold text-gray-200">
+                                    {user.username}
+                                </span>
+                                <span className="text-xs text-gray-400">
+                                    {user.stream && user.stream.is_live ? (user.stream.title as string).slice(0, 20) : "Offline"}
+                                </span>
+                            </div>
+                            {user.stream && user.stream.is_live && (
+                                <span className="!ml-4 text-xs font-semibold text-gray-200 flex items-center">
+                                    <span className="w-2 h-2 ml-1 rounded-full bg-accent mr-2"></span>
+                                    <span>{user.stream.viewers ?? 0}</span>
+                                </span>
+                            )}
+                        </>
                     )}
                 </div>
             ))}
