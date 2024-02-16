@@ -4,12 +4,15 @@ import { ScrollBar } from "../ui/scroll-area";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
+import { getDateDaysAgo } from "@/lib/utils";
 
-export default function PopularStreamers() {
+export default function RecentlyWatched() {
     const client = createBrowserClient();
     const [isClient, setIsClient] = useState(false);
     const [isFetching, setIsFetching] = useState(true);
     const [streams, setStreams] = useState<any[]>([]);
+
+    const filter_date = getDateDaysAgo(7);
 
     useEffect(() => {
         async function fetchStreams() {
@@ -17,36 +20,26 @@ export default function PopularStreamers() {
             const user_id = client.authStore.model?.id;
             if (!user_id) return;
 
-            const response = await fetch("/api/metrics/recommended_streams", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ user_id, should_be_live: true })
-            });
+            //`(user=${user_id}" && created >= "${filter_date}" && type="view")`
+            const recent_view_metrics = await client.collection('user_metrics').getList(1, 5, { filter: `(user="${user_id}" && created >= "${filter_date}" && interaction_type="view" && stream.is_live=true)`, expand: "stream,stream.user" });
+            console.log(recent_view_metrics);
+            if (!recent_view_metrics || !recent_view_metrics.items) return;
 
-            const res = await response.json();
-            const fetchedStreams = res.streams;
-            setIsFetching(false);
-
-            const updatedStreams = fetchedStreams && await Promise.all(fetchedStreams?.map(async (stream: any) => {
-                const userResponse = await client.collection('users').getOne(stream.user, { expand: 'user' }).catch(() => null);
-                const thumbnail = client.files.getUrl(stream, stream.thumbnail)
-                stream.expand = { user: userResponse ?? null };
-                stream.thumbnail = thumbnail;
-
-                return stream;
-            }));
-
-            setStreams(updatedStreams);
+            const streams = (recent_view_metrics.items as any).map((metric: any) => metric);
+            setStreams(streams);
         }
 
-        fetchStreams();
+        try {
+
+            fetchStreams();
+        } catch (error) {
+            console.log("ERROR: ", error);
+        }
     }, []);
 
     return (
         <section className='h-fit relative rounded-lg flex flex-col px-6'>
-            <h1 className='font-bold text-2xl'>Recommended Streamers</h1>
+            <h1 className='font-bold text-2xl'>Recently watched</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-2">
                 {isClient ? (
@@ -58,18 +51,25 @@ export default function PopularStreamers() {
                                 </h1>
                             </div>
                         )}
-                        {streams?.map((stream, i) => (
-                            <StreamPreview
+                        {streams?.map((obj, i) => {
+                            console.log(obj);
+                            const stream = obj?.expand?.stream;
+
+                            if (!stream) return null;
+                            stream.img = client.files.getUrl(stream, stream.thumbnail);
+                            console.log(stream);
+
+                            return <StreamPreview
                                 key={i}
                                 title={stream.title}
                                 viewers={stream.viewers ?? 0}
                                 isLive={true}
-                                streamer={stream!.expand.user.username}
+                                streamer={stream?.expand?.user.username ?? ""}
                                 game={stream.game}
-                                image={stream.thumbnail}
+                                image={stream.img}
                                 stream_id={stream.stream_key}
                             />
-                        ))}
+                        })}
                     </>
                 ) : (
                     <LoadingSkeleton />

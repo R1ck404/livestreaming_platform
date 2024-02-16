@@ -44,12 +44,12 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                                 </Button>
                             </Link>
 
-                            <Link href="/trending">
+                            <Link href="/explore">
                                 <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
                                     <Sparkles className="text-gray-200 group-hover:text-accent" />
                                     {!sidebarCollapsed && (
                                         <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
-                                            Trending
+                                            Explore
                                         </span>
                                     )}
                                 </Button>
