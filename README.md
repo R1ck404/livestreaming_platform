@@ -3,14 +3,19 @@
 Welcome to this livestreaming platform repository! This platform is designed to provide a seamless streaming experience for both streamers and viewers. Below you'll find essential information about the structure of our platform, its functionalities, and how to set it up.
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Folder Structure](#folder-structure)
-3. [Functionalities](#functionalities)
-4. [Recommendation Algorithm](#recommendation-algorithm)
-5. [Setup](#setup)
-6. [What I'm Still Planning on Adding](#what-im-still-planning-on-adding)
-7. [Images](#images)
+1. [Images](#images)
+2. [Overview](#overview)
+3. [Folder Structure](#folder-structure)
+4. [Functionalities](#functionalities)
+5. [Recommendation Algorithm](#recommendation-algorithm)
+6. [Setup](#setup)
+7. [What I'm Still Planning on Adding](#what-im-still-planning-on-adding)
 8. [Important Notes](#important-notes)
+
+## Images
+![platform_1](./images/platform.png)
+![platform_2](./images/platform_2.png)
+![platform_3](./images/platform_3.png)
 
 ## Overview
 This livestreaming platform offers a comprehensive solution consisting of a backend, database, and frontend components. The backend utilizes the RTMP Node Media Server, which has been heavily customized to enhance security and update viewer counts and stream status in the database. The database is built using Pocketbase. Our frontend incorporates Tailwind CSS and modified Shadow Components to create a sleek and intuitive user interface.
@@ -73,11 +78,6 @@ The following areas are targeted for ongoing optimization and improvement:
 This roadmap is an open document, and we welcome contributions and suggestions from the community. Our goal is to create the best possible livestreaming platform that meets the needs of our users and exceeds their expectations.
 
 Stay tuned for updates as we continue to build and improve our platform. Your support and feedback are invaluable to us as we strive to make our livestreaming platform your go-to destination for quality content and community interaction.
-
-## Images
-![platform_1](./images/platform.png)
-![platform_2](./images/platform_2.png)
-![platform_3](./images/platform_3.png)
 
 ## Important Notes
 - Our livestreaming system uses JWT keys to connect livestreams (e.g., OBS) to users. The backend validates these keys, and incorrect keys will result in users being kicked from the streaming session.
