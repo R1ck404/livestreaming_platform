@@ -88,6 +88,7 @@ Stay tuned for updates as we continue to build and improve our platform. Your su
 
 Feel free to contribute to the development of this livestreaming platform! If you have any questions or feedback, please don't hesitate to reach out.
 
-*This livestreaming platform was created by me in 28 hours.*
+*The base of this livestreaming platform was created by me in 24 hours.*
+*The changes to this livestreaming platform were made by me in 5 hours.*
 
 Happy streaming! 🎥🚀
