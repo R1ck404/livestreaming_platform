@@ -18,7 +18,7 @@ Welcome to this livestreaming platform repository! This platform is designed to 
 ![platform_3](./images/platform_3.png)
 
 ## Overview
-This livestreaming platform offers a comprehensive solution consisting of a backend, database, and frontend components. The backend utilizes the RTMP Node Media Server, which has been heavily customized to enhance security and update viewer counts and stream status in the database. The database is built using Pocketbase. Our frontend incorporates Tailwind CSS and modified Shadow Components to create a sleek and intuitive user interface.
+This livestreaming platform offers a comprehensive solution consisting of a backend, database, and frontend components. The backend utilizes the RTMP Node Media Server, which has been heavily customized to enhance security and update viewer counts and stream status in the database. The database is built using Pocketbase. Our frontend incorporates Tailwind CSS and modified ShadCN Components to create a sleek and intuitive user interface.
 
 ## Folder Structure
 - **/backend/**: Contains the modified RTMP Node Media Server.
