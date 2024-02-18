@@ -172,8 +172,6 @@ function Dashboard() {
                     isResizable={true}
                     compactType="vertical"
                     onLayoutChange={(layout, layouts) => {
-                        console.log(layout, layouts);
-
                         setLayoutSettings({ ...layout_settings, layout });
                     }}
                 >

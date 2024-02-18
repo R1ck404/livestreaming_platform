@@ -21,7 +21,7 @@ export default function RecentlyWatched() {
             if (!user_id) return;
 
             //`(user=${user_id}" && created >= "${filter_date}" && type="view")`
-            const recent_view_metrics = await client.collection('user_metrics').getList(1, 5, { filter: `(user="${user_id}" && created >= "${filter_date}" && interaction_type="view" && stream.is_live=true)`, expand: "stream,stream.user" });
+            const recent_view_metrics = await client.collection('user_metrics').getList(1, 5, { filter: `(user="${user_id}" && created >= "${filter_date}" && interaction_type="view" && stream.is_live=true && stream.user != "${user_id}")`, expand: "stream,stream.user" });
             console.log(recent_view_metrics);
             if (!recent_view_metrics || !recent_view_metrics.items) return;
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
 
-export default function PopularStreamers() {
+export default function RecommendedStreamers() {
     const client = createBrowserClient();
     const [isClient, setIsClient] = useState(false);
     const [isFetching, setIsFetching] = useState(true);

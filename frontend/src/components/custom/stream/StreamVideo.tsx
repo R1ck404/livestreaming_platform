@@ -34,6 +34,7 @@ type StreamerInfoProps = {
 };
 
 export default function StreamVideo({ stream_key, isLive, title, viewers, streamer }: StreamVideoProps) {
+    console.log(stream_key);
     const src = `http://localhost:8000/live/${stream_key}.flv`;
     const client = createBrowserClient();
     const [isFollowingStreamer, setIsFollowingStreamer] = useState(false);
@@ -100,11 +101,13 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
             {stream_key !== null ? (
                 <div className="flex flex-col h-full">
                     {isLive ? (
-                        <FLVPlayer url={src} onLoaded={
-                            () => {
-                                addMetrics('view');
-                            }
-                        } />
+                        <>
+                            <FLVPlayer url={src} onLoaded={
+                                () => {
+                                    addMetrics('view');
+                                }
+                            } />
+                        </>
                     ) : (
                         <div className="relative w-full h-full">
                             <Skeleton className="w-full h-full" />

@@ -11,11 +11,15 @@ interface FLVPlayerProps {
 }
 
 const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className, onLoaded }) => {
-    const videoRef = useRef<HTMLVideoElement>(null);
+    console.log(url);
+    const videoRef = useRef<HTMLMediaElement>(null);
 
     useEffect(() => {
         const loadPlayer = async () => {
             if (!videoRef.current) return;
+            videoRef.current.crossOrigin = 'anonymous';
+            videoRef.current.muted = true;
+            videoRef.current.autoplay = false;
 
             // gotta import flv.js client-side
             const flv = (await import('flv.js')).default;
@@ -23,14 +27,14 @@ const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className, onLoaded }) => {
             const player = flv.createPlayer({
                 type: 'flv',
                 url,
-                isLive: true,
             }, {
+
                 isLive: true,
             });
 
             player.attachMediaElement(videoRef.current);
             player.load();
-            player.play();
+            await player.play();
 
             if (onLoaded) onLoaded();
 
@@ -46,6 +50,11 @@ const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className, onLoaded }) => {
 
         loadPlayer();
 
+        return () => {
+            if (videoRef.current) {
+                videoRef.current.pause();
+            }
+        };
     }, [url]);
 
     const togglePlay = () => {
@@ -72,11 +81,11 @@ const FLVPlayer: React.FC<FLVPlayerProps> = ({ url, className, onLoaded }) => {
     };
 
     return (
-        <div className={cn(className, "relative group bg-muted rounded-xl")}>
+        <div className={cn(className, "relative group bg-muted rounded-xl w-full h-full")}>
             <video
-                ref={videoRef}
+                ref={videoRef as any}
                 style={{ width: '100%', height: '100%' }}
-                muted
+                muted={true}
                 autoPlay
                 playsInline
             />

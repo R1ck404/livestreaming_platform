@@ -15,6 +15,7 @@ import { Skeleton } from "../ui/skeleton";
 import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
 import SearchBar from "./search-bar";
 import { Switch } from "../ui/switch";
+import { NotificationsListModal } from "./notifications-list";
 
 type NavigationBarProps = {
     isUserAuthenticated: boolean;
@@ -60,10 +61,12 @@ export default function NavigationBar({ isUserAuthenticated }: NavigationBarProp
                         </div>
 
                         {isUserAuthenticated && (
-                            <button className="flex items-center relative">
-                                <Bell size={20} />
-                                <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-accent ring ring-background"></span>
-                            </button>
+                            <NotificationsListModal trigger={
+                                <button className="flex items-center relative">
+                                    <Bell size={20} />
+                                    <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-accent ring ring-background"></span>
+                                </button>
+                            } />
                         )}
                     </>
                 ) : (
