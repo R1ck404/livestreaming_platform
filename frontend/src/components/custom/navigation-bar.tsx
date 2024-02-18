@@ -110,13 +110,33 @@ export default function NavigationBar({ isUserAuthenticated }: NavigationBarProp
                                         Dashboard
                                     </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>Privacy</DropdownMenuItem>
-                                <DropdownMenuItem>Safety</DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link href={`/privacy`} className="cursor-pointer">
+                                        Privacy
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link href={`/safety`} className="cursor-pointer">
+                                        Safety
+                                    </Link>
+                                </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>Subscriptions</DropdownMenuItem>
-                                <DropdownMenuItem>Wallet</DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link href={`/subscriptions`} className="cursor-pointer">
+                                        Subscriptions
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link href={`/wallet`} className="cursor-pointer">
+                                        Wallet
+                                    </Link>
+                                </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>Settings</DropdownMenuItem>
+                                <DropdownMenuItem asChild>
+                                    <Link href={`/settings`} className="cursor-pointer">
+                                        Settings
+                                    </Link>
+                                </DropdownMenuItem>
                                 <DropdownMenuItem>Language</DropdownMenuItem>
                                 <DropdownMenuItem className="flex justify-between items-center">
                                     <span>

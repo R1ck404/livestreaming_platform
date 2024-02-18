@@ -18,11 +18,9 @@ type StreamPreviewProps = {
 export default function StreamPreview(
     { title, viewers, isLive, streamer, game, image, stream_id }: StreamPreviewProps
 ) {
-
-    const { push, replace } = useRouter();
     return (
-        <Link className="flex flex-col overflow-hidden space-y-1 w-full cursor-pointer group" href={`/stream/${stream_id}`}>
-            <div className="w-full h-48 relative">
+        <div className="flex flex-col overflow-hidden space-y-1 w-full cursor-pointer group">
+            <Link className="w-full h-48 relative" href={`/stream/${stream_id}`}>
                 <Image src={image} alt={''} layout="fill" objectFit="cover" className='rounded-lg hover:border border-accent' />
                 <div className="absolute top-2 left-0 w-full flex justify-between">
                     <Badge className="text-white bg-black/30 backdrop-blur-md hover:bg-slate-500 ml-2">
@@ -36,7 +34,7 @@ export default function StreamPreview(
                         <span className="ml-1 uppercase font-bold">{isLive ? 'Live' : 'Offline'}</span>
                     </Badge>
                 </div>
-            </div>
+            </Link>
 
             <h2 className='font-semibold text-xl text-white w-full'>
                 {title}
@@ -56,6 +54,6 @@ export default function StreamPreview(
                     </span>
                 </div>
             </Link>
-        </Link>
+        </div>
     );
 }

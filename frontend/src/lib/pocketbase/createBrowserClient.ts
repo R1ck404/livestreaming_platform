@@ -21,22 +21,6 @@ export function createBrowserClient() {
 
     if (!singletonClient) singletonClient = _singletonClient;
 
-    singletonClient.autoCancellation(false);
-
-    singletonClient.authStore.onChange((token, model) => {
-        document.cookie = singletonClient!.authStore.exportToCookie({
-            httpOnly: false,
-        });
-
-        try {
-            // get an up-to-date auth store state by verifying and refreshing the loaded auth model (if any)
-            singletonClient!.authStore.isValid && singletonClient!.collection('users').authRefresh();
-        } catch (_) {
-            // clear the auth store on failed refresh
-            singletonClient!.authStore.clear();
-        }
-
-    });
-
+    // singletonClient.autoCancellation(false);
     return singletonClient;
 }

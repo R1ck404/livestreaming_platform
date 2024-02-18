@@ -30,6 +30,7 @@ export default function RecommendedStreamers() {
             setIsFetching(false);
 
             const updatedStreams = fetchedStreams && await Promise.all(fetchedStreams?.map(async (stream: any) => {
+                console.log(stream);
                 const userResponse = await client.collection('users').getOne(stream.user, { expand: 'user' }).catch(() => null);
                 const thumbnail = client.files.getUrl(stream, stream.thumbnail)
                 stream.expand = { user: userResponse ?? null };
@@ -64,7 +65,7 @@ export default function RecommendedStreamers() {
                                 title={stream.title}
                                 viewers={stream.viewers ?? 0}
                                 isLive={true}
-                                streamer={stream!.expand.user.username}
+                                streamer={stream!.expand?.user?.username ?? ""}
                                 game={stream.game}
                                 image={stream.thumbnail}
                                 stream_id={stream.stream_key}

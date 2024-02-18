@@ -169,8 +169,8 @@ function CustomStreamPreview(
 
     const { push, replace } = useRouter();
     return (
-        <Link className="flex flex-col overflow-hidden shadow-md space-y-1 w-full group" href={`/stream/${stream_id}`}>
-            <div className="w-full min-h-[25rem] relative h-auto cursor-pointer">
+        <div className="flex flex-col overflow-hidden shadow-md space-y-1 w-full group">
+            <Link className="w-full min-h-[25rem] relative h-auto cursor-pointer" href={`/stream/${stream_id}`}>
                 <Image src={image} alt={''} layout="fill" objectFit="cover" className='rounded-lg hover:border border-accent h-auto' />
                 <div className="absolute top-2 left-0 w-full flex justify-between">
                     <Badge className="text-white bg-black/30 backdrop-blur-md hover:bg-slate-500 ml-2">
@@ -184,7 +184,7 @@ function CustomStreamPreview(
                         <span className="ml-1 uppercase font-bold">{isLive ? 'Live' : 'Offline'}</span>
                     </Badge>
                 </div>
-            </div>
+            </Link>
 
             <h2 className='font-semibold text-xl text-white w-full'>
                 {title}
@@ -204,6 +204,6 @@ function CustomStreamPreview(
                     </span>
                 </div>
             </Link>
-        </Link>
+        </div>
     );
 }

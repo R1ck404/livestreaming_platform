@@ -145,15 +145,16 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                                 )}
                             </Button>
 
-                            <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
-                                <Settings className="text-gray-200 group-hover:text-accent" />
-
-                                {!sidebarCollapsed && (
-                                    <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
-                                        Settings
-                                    </span>
-                                )}
-                            </Button>
+                            <Link href="/settings">
+                                <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
+                                    <Settings className="text-gray-200 group-hover:text-accent" />
+                                    {!sidebarCollapsed && (
+                                        <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
+                                            Settings
+                                        </span>
+                                    )}
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </>
