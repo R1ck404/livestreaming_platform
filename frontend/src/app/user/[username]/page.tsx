@@ -134,29 +134,29 @@ export default function Page() {
     return (
         <DefaultLayout>
             <div className="relative w-full h-full">
-                <div className="w-full h-96 bg-accent relative flex flex-col items-center justify-center overflow-hidden space-y-8 z-0">
+                <div className="w-full h-52 md:h-64 lg:h-80 xl:h-96 bg-accent relative flex flex-col items-center justify-center overflow-hidden space-y-8 z-0">
                     {Array(rows).fill('').map((_, rowIndex) => (
-                        <div key={rowIndex} className="overflow-hidden whitespace-nowrap font-extrabold text-8xl text-orange-400/60">
+                        <div key={rowIndex} className=" whitespace-nowrap font-extrabold text-8xl text-orange-400/60">
                             <p>{repeatString(name, cols)}</p>
                         </div>
                     ))}
                 </div>
 
                 <section className="w-full h-full z-10 relative px-10 py-6 flex flex-col space-y-12">
-                    <div className="w-full justify-between flex">
+                    <div className="w-full justify-between flex flex-col lg:flex-row items-center">
                         {isClient && user ? (
                             <>
-                                <div className="flex items-center justify-center w-fit space-x-2">
-                                    <Avatar className="w-16 h-16">
+                                <div className="flex flex-col lg:flex-row items-center justify-center w-fit space-x-2">
+                                    <Avatar className="w-32 h-32 -mt-16 lg:mt-0 lg:w-16 lg:h-16">
                                         <AvatarImage src={user.avatar} />
-                                        <AvatarFallback>{user.username[0].toUpperCase()}</AvatarFallback>
+                                        <AvatarFallback className="text-4xl lg:text-xl">{user.username[0].toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <div>
                                         <h1 className="text-3xl font-bold text-gray-200">{user.username}</h1>
                                         <p className="text-sm text-gray-400">{user.followers ?? 0} Followers</p>
                                     </div>
                                 </div>
-                                <div className="flex flex-col md:flex-row space-x-2">
+                                <div className="flex flex-row space-x-2 mt-2 lg:mt-0">
                                     <div className="flex flex-row space-x-2 mb-2">
                                         <Button type="button" className="w-fit px-2" variant="outline">
                                             <Bell size={24} />
@@ -174,7 +174,7 @@ export default function Page() {
                             <UserInfoSkeleton />
                         )}
                     </div>
-                    <Tabs defaultValue="home" className="w-full">
+                    <Tabs defaultValue="home" className="w-full !mt-0 lg:!mt-4">
                         <TabsList className="mb-0 rounded-b-none space-x-4">
                             <TabsTrigger value="home" >Home</TabsTrigger>
                             <TabsTrigger value="about">About</TabsTrigger>
@@ -191,7 +191,7 @@ export default function Page() {
                                             <Image src={stream.thumbnail} alt="stream" layout="fill" objectFit="cover" className="rounded-xl" />
                                             <div className="absolute top-0 left-0 w-full flex justify-between mt-2">
 
-                                                <Badge variant={stream.is_live ? "destructive" : "secondary"} className="ml-2">
+                                                <Badge className={`ml-2 ${stream.is_live ? "bg-red-500 text-white" : "bg-gray-600"}`}>
                                                     {stream.is_live ? "Live" : "Offline"}
                                                 </Badge>
                                                 <Badge variant="secondary" className="space-x-2 mr-2">

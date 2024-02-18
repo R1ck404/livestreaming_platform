@@ -28,7 +28,7 @@ export default function PopularGames() {
     }, []);
 
     return (
-        <section className='h-full relative rounded-lg flex flex-col px-6 mt-8'>
+        <section className='h-full relative rounded-lg flex flex-col px-6'>
             <h1 className='font-bold text-2xl'>Popular Games</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-2">

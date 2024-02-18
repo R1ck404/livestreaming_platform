@@ -34,7 +34,6 @@ type StreamerInfoProps = {
 };
 
 export default function StreamVideo({ stream_key, isLive, title, viewers, streamer }: StreamVideoProps) {
-    console.log(stream_key);
     const src = `http://localhost:8000/live/${stream_key}.flv`;
     const client = createBrowserClient();
     const [isFollowingStreamer, setIsFollowingStreamer] = useState(false);
@@ -119,19 +118,20 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
 
                     <div className="flex flex-col mt-4 w-full">
                         <h1 className="font-bold text-3xl">{title}</h1>
-                        <div className="flex flex-col md:flex-row md:items-center mt-4 w-full">
+                        <div className="flex space-y-2 sm:space-y-0 sm:items-center mt-4 w-full flex-col sm:flex-row">
                             <div className="flex items-center">
-                                <Avatar className="mr-2">
+                                <Avatar className="mr-2 border ring-2 ring-red-600 border-background m-0.5 relative">
                                     <AvatarImage src={streamer?.avatar} />
                                     <AvatarFallback className="bg-accent text-accent-content">{streamer?.username[0]}</AvatarFallback>
                                 </Avatar>
+
                                 <div className="ml-2">
                                     <h1 className="font-bold text-xl">{streamer?.username}</h1>
                                     <p className="text-sm text-stone-500">{streamer?.followers_amount} Followers</p>
                                 </div>
                             </div>
-                            <div className="flex w-full flex-col sm:flex-row">
-                                <div className="flex  ml-6">
+                            <div className="flex w-full flex-row">
+                                <div className="flex sm:ml-6">
                                     <Tooltip>
                                         <TooltipTrigger asChild>
                                             <Button className="rounded-lg" variant="accent" onClick={followStreamer}>
@@ -145,13 +145,13 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
                                 </div>
 
                                 <div className="flex space-x-4 ml-auto">
-                                    <div className="flex justify-center rounded-full bg-muted hover:text-accent hover:bg-muted/40 transition-all p-2 cursor-pointer space-x-2 px-4">
+                                    <div className="justify-center rounded-full bg-muted hover:text-accent hover:bg-muted/40 transition-all p-2 cursor-pointer space-x-2 px-4 hidden lg:flex">
                                         <Eye />
                                         <span>
                                             {viewers}
                                         </span>
                                     </div>
-                                    <div className="rounded-full bg-muted hover:bg-muted/40 hover:text-accent transition-all p-2 cursor-pointer">
+                                    <div className="rounded-full bg-muted hover:bg-muted/40 hover:text-accent transition-all p-2 cursor-pointer hidden lg:flex">
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <Forward />

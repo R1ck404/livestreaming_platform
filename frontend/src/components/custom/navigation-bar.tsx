@@ -44,14 +44,14 @@ export default function NavigationBar({ isUserAuthenticated }: NavigationBarProp
                             borderRadius: '.25rem',
                         }} className="bg-accent">
                             {isUserAuthenticated ? (
-                                <Link href="/dashboard/create-stream" style={{ clipPath: 'polygon(0 0, 93% 0, 100% 30%, 100% 100%, 80% 100%, 7% 100%, 0 78%, 0% 30%)' }} className="flex items-center bg-card hover:bg-background/80 w-full justify-center transition-all overflow-hidden rounded py-2 px-4">
+                                <Link href="/dashboard/create-stream" style={{ clipPath: 'polygon(0 0, 93% 0, 100% 30%, 100% 100%, 80% 100%, 7% 100%, 0 78%, 0% 30%)' }} className="flex items-center bg-card hover:bg-background/80 w-full justify-center transition-all overflow-hidden rounded py-1 px-2 lg:py-2 lg:px-4">
                                     <Video className="text-accent" />
                                     <span className="ml-2 text-sm font-semibold text-accent uppercase">
                                         Go live
                                     </span>
                                 </Link>
                             ) : (
-                                <Link href="/login" style={{ clipPath: 'polygon(0 0, 93% 0, 100% 30%, 100% 100%, 80% 100%, 7% 100%, 0 78%, 0% 30%)' }} className="flex items-center bg-card hover:bg-background/80 w-full justify-center transition-all overflow-hidden rounded py-2 px-4">
+                                    <Link href="/login" style={{ clipPath: 'polygon(0 0, 93% 0, 100% 30%, 100% 100%, 80% 100%, 7% 100%, 0 78%, 0% 30%)' }} className="flex items-center bg-card hover:bg-background/80 w-full justify-center transition-all overflow-hidden rounded py-0 px-2 lg:py-2 lg:px-4">
                                     <LogIn className="text-accent" />
                                     <span className="ml-2 text-sm font-semibold text-accent uppercase">
                                         Sign in

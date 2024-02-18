@@ -54,11 +54,11 @@ const SearchBar: FC = () => {
     };
 
     return (
-        <div className="relative w-full" ref={fullRef}>
+        <div className="relative w-12 sm:w-full" ref={fullRef}>
             <input
                 type="text"
                 placeholder="Search"
-                className={`bg-background text-gray-300 px-4 py-2 focus:outline-none focus:ring-1 focus:ring-accent focus:bg-background border-[1px] border-muted shadow-md w-full transition-all ${users.length > 0 ? "rounded-t-xl" : "rounded-full"}`}
+                className={`bg-background text-gray-300 px-4 py-2 focus:outline-none focus:ring-1 focus:ring-accent focus:bg-background border-[1px] border-muted shadow-md transition-all ${users.length > 0 ? "rounded-t-xl" : "rounded-full"} w-10 sm:w-full`}
                 ref={inputRef}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
                 onKeyUp={(e) => {
@@ -68,9 +68,8 @@ const SearchBar: FC = () => {
                         setSearchTerm(e.currentTarget.value);
                     }
                 }}
-
             />
-            <span className="absolute top-0 right-0 flex items-center h-full mr-4">
+            <span className="absolute top-0 right-0 hidden items-center h-full mr-4 sm:flex">
                 <Search size={20} />
             </span>
             {users.length > 0 && (

@@ -61,8 +61,8 @@ export default function Page() {
 
                 {stream !== null && stream?.exists !== false && (
                     <>
-                        <div className="flex space-x-4">
-                            <div className="w-3/4 !rounded-xl overflow-hidden sm:flex-col">
+                        <div className="flex flex-col lg:flex-row lg:space-x-4">
+                            <div className="w-full lg:w-3/4 !rounded-xl overflow-hidden sm:flex-col">
                                 <StreamVideo
                                     stream_key={stream_key ?? null}
                                     isLive={stream?.is_live}
@@ -71,19 +71,19 @@ export default function Page() {
                                     viewers={stream?.viewers ?? 0}
                                 />
                             </div>
-                            <div className="w-1/4">
+                            <div className="w-full mt-4 lg:w-1/4 lg:mt-0">
                                 <StreamChat stream_key={stream_key ?? null} stream_id={stream?.id} stream_settings={stream?.settings ?? {}} />
                             </div>
                         </div>
-                        <div className="flex space-x-4 mt-4">
-                            <div className="w-3/4">
+                        <div className="flex flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 mt-4">
+                            <div className="w-full lg:w-3/4">
                                 <StreamDescription
                                     stream_key={stream_key ?? null}
                                     username={stream?.expand?.user?.username ?? 'Unknown'}
                                     description={stream?.description ?? 'This stream is currently offline.'}
                                 />
                             </div>
-                            <div className="w-1/4">
+                            <div className="w-full lg:w-1/4">
                                 <RelatedStreams stream_key={stream_key ?? null} stream_id={stream?.id} />
                             </div>
                         </div>

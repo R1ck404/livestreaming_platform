@@ -23,7 +23,7 @@ export default function StreamPreview(
     return (
         <Link className="flex flex-col overflow-hidden space-y-1 w-full cursor-pointer group" href={`/stream/${stream_id}`}>
             <div className="w-full h-48 relative">
-                <Image src={image} alt={''} layout="fill" objectFit="cover" className='rounded-lg group-hover:border border-accent' />
+                <Image src={image} alt={''} layout="fill" objectFit="cover" className='rounded-lg hover:border border-accent' />
                 <div className="absolute top-2 left-0 w-full flex justify-between">
                     <Badge className="text-white bg-black/30 backdrop-blur-md hover:bg-slate-500 ml-2">
                         <Eye size={22} />

@@ -15,7 +15,7 @@ import RecommendedStreamers from '@/components/custom/recommended-streamers';
 
 export default function Index() {
     return (
-        <DefaultLayout>
+        <DefaultLayout className='space-y-8'>
             <MainHero />
             <PopularStreamers />
             <PopularGames />
