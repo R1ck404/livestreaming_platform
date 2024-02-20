@@ -62,7 +62,7 @@ export default function RecommendedStreamersSidebar({ collapsed }: RecommendedSt
                         {!collapsed && (
                             <>
                                 <div className="flex flex-col">
-                                    <span className="text-sm font-semibold text-gray-200">
+                                    <span className="text-sm font-semibold text-card-foreground">
                                         {user?.username}
                                     </span>
                                     <span className="text-xs text-gray-400">
@@ -70,7 +70,7 @@ export default function RecommendedStreamersSidebar({ collapsed }: RecommendedSt
                                     </span>
                                 </div>
                                 {stream?.is_live && (
-                                    <span className="!ml-4 text-xs font-semibold text-gray-200 flex items-center">
+                                    <span className="!ml-4 text-xs font-semibold text-card-foreground flex items-center">
                                         <span className="w-2 h-2 ml-1 rounded-full bg-accent mr-2"></span>
                                         <span>{stream.viewers ?? 0}</span>
                                     </span>

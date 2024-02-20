@@ -16,6 +16,7 @@ import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
 import SearchBar from "./search-bar";
 import { Switch } from "../ui/switch";
 import { NotificationsListModal } from "./notifications-list";
+import { useTheme } from "next-themes";
 
 type NavigationBarProps = {
     isUserAuthenticated: boolean;
@@ -24,9 +25,12 @@ type NavigationBarProps = {
 export default function NavigationBar({ isUserAuthenticated }: NavigationBarProps) {
     const [isClient, setIsClient] = useState(false);
     const client = createBrowserClient();
+    const { setTheme, resolvedTheme } = useTheme();
 
     useEffect(() => {
         setIsClient(true);
+
+        console.log(resolvedTheme);
     }, []);
 
     return (
@@ -142,7 +146,7 @@ export default function NavigationBar({ isUserAuthenticated }: NavigationBarProp
                                     <span>
                                         Dark theme
                                     </span>
-                                    <Switch />
+                                    <Switch checked={resolvedTheme === 'dark'} onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')} />
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>Help</DropdownMenuItem>
                                 <DropdownMenuSeparator />

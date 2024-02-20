@@ -60,9 +60,9 @@ export default function MainHero() {
 
                                     <div className="flex-row mt-4 space-y-5">
                                         <div className="space-y-4">
-                                            <h1 className='font-bold text-4xl sm:text-5xl md:text-6xl'>{stream?.title}</h1>
+                                            <h1 className='font-bold text-4xl sm:text-5xl md:text-6xl text-white'>{stream?.title}</h1>
                                         </div>
-                                        <div className="flex items-center flex-row space-x-2">
+                                        <div className="flex items-center flex-row space-x-2 text-white">
                                             <Avatar >
                                                 <AvatarFallback>
                                                     {stream?.expand?.user?.username[0].toUpperCase()}

@@ -24,7 +24,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
     }, [])
 
     return (
-        <aside className={`flex flex-col ${sidebarCollapsed ? "w-[4.5rem]" : "w-72 fixed z-[1002] sm:relative"} transition-all ease-in-out bg-card`}>
+        <aside className={`flex flex-col text-card-foreground ${sidebarCollapsed ? "w-[4.5rem]" : "w-72 fixed z-[1002] sm:relative"} transition-all ease-in-out bg-card`}>
             <div className="h-16 py-4 px-6 border-r border-b">
                 <h1 className="text-2xl font-bold">Stream</h1>
             </div>
@@ -34,10 +34,10 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                         <div className="flex flex-col space-y-4 mx-4">
                             <Link href="/">
                                 <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
-                                    <Home className="text-gray-200 group-hover:text-accent" />
+                                    <Home className="text-card-foreground group-hover:text-accent" />
 
                                     {!sidebarCollapsed && (
-                                        <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
+                                        <span className="ml-2 text-sm font-semibold text-card-foreground group-hover:text-accent">
                                             Home
                                         </span>
                                     )}
@@ -46,9 +46,9 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
 
                             <Link href="/explore">
                                 <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
-                                    <Sparkles className="text-gray-200 group-hover:text-accent" />
+                                    <Sparkles className="text-card-foreground group-hover:text-accent" />
                                     {!sidebarCollapsed && (
-                                        <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
+                                        <span className="ml-2 text-sm font-semibold text-card-foreground group-hover:text-accent">
                                             Explore
                                         </span>
                                     )}
@@ -57,9 +57,9 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
 
                             <Link href="/games">
                                 <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
-                                    <Gamepad className="text-gray-200 group-hover:text-accent" />
+                                    <Gamepad className="text-card-foreground group-hover:text-accent" />
                                     {!sidebarCollapsed && (
-                                        <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
+                                        <span className="ml-2 text-sm font-semibold text-card-foreground group-hover:text-accent">
                                             Games
                                         </span>
                                     )}
@@ -81,7 +81,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
 
                                         <hr className="mx-4 mb-4" />
                                         <div className="px-4">
-                                            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                                                <h3 className="text-sm font-semibold text-card-foreground uppercase tracking-wider">
                                                 Following
                                             </h3>
                                             <div className="flex flex-col space-y-2 w-full mt-4">
@@ -112,7 +112,7 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                                 </div>
                             ) : (
                                 <div className="px-4">
-                                    <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                                        <h3 className="text-sm font-semibold text-card-foreground uppercase tracking-wider">
                                         Recommended
                                     </h3>
                                     <div className="flex flex-col space-y-2 mt-4">
@@ -135,21 +135,21 @@ export default function Sidebar({ isUserAuthenticated }: SidebarProps) {
                             }>
                                 {!sidebarCollapsed ? (
                                     <>
-                                        <ArrowLeftToLine className="text-gray-200 group-hover:text-accent" />
-                                        <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
+                                        <ArrowLeftToLine className="text-card-foreground group-hover:text-accent" />
+                                        <span className="ml-2 text-sm font-semibold text-card-foreground group-hover:text-accent">
                                             Collapse
                                         </span>
                                     </>
                                 ) : (
-                                    <ArrowRightToLine className="text-gray-200 group-hover:text-accent" />
+                                        <ArrowRightToLine className="text-card-foreground group-hover:text-accent" />
                                 )}
                             </Button>
 
                             <Link href="/settings">
                                 <Button variant="ghost" className={`flex items-center hover:bg-border/20 w-full border border-transparent hover:border-accent group ${sidebarCollapsed ? "justify-center p-0" : "justify-start"}`}>
-                                    <Settings className="text-gray-200 group-hover:text-accent" />
+                                    <Settings className="text-card-foreground group-hover:text-accent" />
                                     {!sidebarCollapsed && (
-                                        <span className="ml-2 text-sm font-semibold text-gray-200 group-hover:text-accent">
+                                        <span className="ml-2 text-sm font-semibold text-card-foreground group-hover:text-accent">
                                             Settings
                                         </span>
                                     )}

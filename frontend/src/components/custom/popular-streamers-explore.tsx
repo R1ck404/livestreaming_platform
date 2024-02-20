@@ -169,7 +169,7 @@ function CustomStreamPreview(
 
     const { push, replace } = useRouter();
     return (
-        <div className="flex flex-col overflow-hidden shadow-md space-y-1 w-full group">
+        <div className="flex flex-col overflow-hidden  space-y-1 w-full group">
             <Link className="w-full min-h-[25rem] relative h-auto cursor-pointer" href={`/stream/${stream_id}`}>
                 <Image src={image} alt={''} layout="fill" objectFit="cover" className='rounded-lg hover:border border-accent h-auto' />
                 <div className="absolute top-2 left-0 w-full flex justify-between">
@@ -186,7 +186,7 @@ function CustomStreamPreview(
                 </div>
             </Link>
 
-            <h2 className='font-semibold text-xl text-white w-full'>
+            <h2 className='font-semibold text-xl text-foreground w-full'>
                 {title}
             </h2>
 
@@ -196,7 +196,7 @@ function CustomStreamPreview(
                     <AvatarImage src="" />
                 </Avatar>
                 <div className="flex flex-col">
-                    <span className='font-semibold text-white'>
+                    <span className='font-semibold text-foreground'>
                         {streamer}
                     </span>
                     <span className="text-gray-400 text-sm">

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 const inter = Inter({ subsets: ["latin"] });
 import { Toaster } from "@/components/ui/sonner"
+import { ThemeProvider } from "@/components/custom/theme-provider";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -25,11 +26,16 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body className="bg-background text-foreground">
                 <main className="min-h-screen flex flex-col items-center">
-                    <TooltipProvider delayDuration={250}>
-                        {/* <PageUserContextProvider> */}
-                        {children}
-                        {/* </PageUserContextProvider> */}
-                    </TooltipProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <TooltipProvider delayDuration={250}>
+                            {children}
+                        </TooltipProvider>
+                    </ThemeProvider>
                 </main>
                 <Toaster />
             </body>

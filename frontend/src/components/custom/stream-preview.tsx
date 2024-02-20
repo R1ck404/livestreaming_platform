@@ -36,7 +36,7 @@ export default function StreamPreview(
                 </div>
             </Link>
 
-            <h2 className='font-semibold text-xl text-white w-full'>
+            <h2 className='font-semibold text-xl text-foreground w-full'>
                 {title}
             </h2>
 
@@ -46,7 +46,7 @@ export default function StreamPreview(
                     <AvatarImage src="" />
                 </Avatar>
                 <div className="flex flex-col">
-                    <span className='font-semibold text-white'>
+                    <span className='font-semibold text-foreground'>
                         {streamer}
                     </span>
                     <span className="text-gray-400 text-sm">

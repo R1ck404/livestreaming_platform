@@ -32,8 +32,8 @@ export function NotificationsListModal({ trigger }: NotificationListProps) {
             <PopoverTrigger>
                 {trigger}
             </PopoverTrigger>
-            <PopoverContent sideOffset={20} collisionPadding={60} >
-                <div className="w-full rounded-lg shadow-lg divide-y divide-dashed hover:divide-solid">
+            <PopoverContent sideOffset={20} collisionPadding={60} className="shadow-lg" >
+                <div className="w-full rounded-lg divide-y divide-dashed hover:divide-solid">
                     {notifications.length === 0 && (
                         <div className="flex items-center justify-center py-2">
                             <p className="text-sm font-semibold">No new notifications</p>

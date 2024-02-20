@@ -152,8 +152,8 @@ export default function Page() {
                                         <AvatarFallback className="text-4xl lg:text-xl">{user.username[0].toUpperCase()}</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <h1 className="text-3xl font-bold text-gray-200">{user.username}</h1>
-                                        <p className="text-sm text-gray-400">{user.followers ?? 0} Followers</p>
+                                        <h1 className="text-3xl font-bold text-foreground">{user.username}</h1>
+                                        <p className="text-sm text-foreground/70">{user.followers ?? 0} Followers</p>
                                     </div>
                                 </div>
                                 <div className="flex flex-row space-x-2 mt-2 lg:mt-0">

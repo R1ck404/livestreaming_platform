@@ -22,7 +22,6 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
             if (!user_id) return;
 
             const following = await client.collection('followers').getList(1, 3, { filter: `follower="${user_id}"`, expand: 'following' });
-            console.log("FOLLOWING", following);
             const followingUsers = following.items.map((item: any) => item.expand.following);
             setFollowingUsers(followingUsers);
 
@@ -36,7 +35,6 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
                 })
             );
 
-            console.log("UU", updatedUsers);
             setFollowingUsers(updatedUsers);
         }
 
@@ -58,7 +56,7 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
                     {!collapsed && (
                         <>
                             <div className="flex flex-col">
-                                <span className="text-sm font-semibold text-gray-200">
+                                <span className="text-sm font-semibold text-card-foreground">
                                     {user.username}
                                 </span>
                                 <span className="text-xs text-gray-400">
@@ -66,7 +64,7 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
                                 </span>
                             </div>
                             {user.stream && user.stream.is_live && (
-                                <span className="!ml-4 text-xs font-semibold text-gray-200 flex items-center">
+                                <span className="!ml-4 text-xs font-semibold text-card-foreground flex items-center">
                                     <span className="w-2 h-2 ml-1 rounded-full bg-accent mr-2"></span>
                                     <span>{user.stream.viewers ?? 0}</span>
                                 </span>
