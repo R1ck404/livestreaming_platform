@@ -22,19 +22,21 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
             if (!user_id) return;
 
             const following = await client.collection('followers').getList(1, 3, { filter: `follower="${user_id}"`, expand: 'following' });
+            console.log("FOLLOWING", following);
             const followingUsers = following.items.map((item: any) => item.expand.following);
             setFollowingUsers(followingUsers);
 
             setIsFetching(false);
 
             const updatedUsers = await Promise.all(
-                followingUsers.map(async (user) => {
+                followingUsers.map(async (user: { id: any; stream: any; }) => {
                     const stream = await client.collection('streams').getList(1, 3, { filter: `user = "${user.id}"` });
                     user.stream = stream.items[0] ?? null;
                     return user;
                 })
             );
 
+            console.log("UU", updatedUsers);
             setFollowingUsers(updatedUsers);
         }
 

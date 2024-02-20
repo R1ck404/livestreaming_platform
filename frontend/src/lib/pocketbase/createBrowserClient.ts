@@ -1,8 +1,15 @@
-// import { TypedPocketBase } from "@/types/pocketbase-types";
 import PocketBase from "pocketbase";
 
-// let singletonClient: TypedPocketBase | null = null;
 let singletonClient: PocketBase | null = null;
+const cache: Map<string, any> = new Map();
+
+function objectToUrlParams(obj: any) {
+    return Object.keys(obj).reduce((acc, key, index) => {
+        const value = obj[key];
+        const prefix = index === 0 ? "?" : "&";
+        return `${acc}${prefix}${key}=${encodeURIComponent(value)}`;
+    }, "");
+}
 
 export function createBrowserClient() {
     if (!process.env.NEXT_PUBLIC_POCKETBASE_API_URL) {
@@ -12,7 +19,7 @@ export function createBrowserClient() {
     const createNewClient = () => {
         return new PocketBase(
             process.env.NEXT_PUBLIC_POCKETBASE_API_URL
-        );// as TypedPocketBase;
+        );
     };
 
     const _singletonClient = singletonClient ?? createNewClient();
@@ -21,6 +28,31 @@ export function createBrowserClient() {
 
     if (!singletonClient) singletonClient = _singletonClient;
 
-    // singletonClient.autoCancellation(false);
+    singletonClient.autoCancellation(false);
+
+    singletonClient.beforeSend = function (url, options) {
+        const query = objectToUrlParams(options.query);
+        const cacheKey = `${url}${query}`;
+
+        if (cache.has(cacheKey)) {
+            const response = new Response(JSON.stringify(cache.get(cacheKey)), {});
+
+            options.fetch = (url: RequestInfo | URL, config?: RequestInit | undefined) =>
+                new Promise((resolve, reject) => {
+                    resolve(response);
+                });
+        }
+
+        return { url, options };
+    };
+
+    singletonClient.afterSend = function (response, data) {
+        const cacheKey = response.url;
+        if (response.status === 200 && response.ok && !cache.has(cacheKey) && cacheKey.includes("/api/")) {
+            cache.set(cacheKey, data);
+        }
+        return data;
+    };
+
     return singletonClient;
 }

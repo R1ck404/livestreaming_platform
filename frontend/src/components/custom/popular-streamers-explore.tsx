@@ -81,7 +81,7 @@ export default function PopularStreamersExplore() {
                                                     title={stream.title}
                                                     viewers={stream.viewers ?? 0}
                                                     isLive={true}
-                                                    streamer={stream!.expand.user.username}
+                                                    streamer={stream!.expand?.user?.username ?? ""}
                                                     game={stream.game}
                                                     image={stream.thumbnail}
                                                     stream_id={stream.stream_key}
@@ -98,7 +98,7 @@ export default function PopularStreamersExplore() {
                                     title={streams && streams[0]?.title}
                                     viewers={streams && streams[0]?.viewers}
                                     isLive={true}
-                                    streamer={streams[0]?.expand.user.username ?? 'Unknown'}
+                                    streamer={streams[0]?.expand?.user?.username ?? 'Unknown'}
                                     game={streams && streams[0]?.game}
                                     image={streams && streams[0]?.thumbnail}
                                     stream_id={streams && streams[0]?.stream_key}
@@ -120,7 +120,7 @@ export default function PopularStreamersExplore() {
                                                     title={stream.title}
                                                     viewers={stream.viewers ?? 0}
                                                     isLive={true}
-                                                    streamer={stream!.expand.user.username}
+                                                    streamer={stream!.expand?.user?.username ?? ""}
                                                     game={stream.game}
                                                     image={stream.thumbnail}
                                                     stream_id={stream.stream_key}

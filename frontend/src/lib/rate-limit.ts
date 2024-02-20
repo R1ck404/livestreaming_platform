@@ -12,6 +12,9 @@ export default function rateLimit(options?: Options) {
         ttl: options?.interval || 60000,
     });
 
+    let lastResponse: { statusCode: number, data: any } | null = null;
+    let responseSent = false;
+
     return {
         check: (res: NextApiResponse, limit: number, token: string) =>
             new Promise<void>((resolve, reject) => {
@@ -29,7 +32,17 @@ export default function rateLimit(options?: Options) {
                     isRateLimited ? 0 : limit - currentUsage,
                 );
 
+                if (isRateLimited && lastResponse) {
+                    res.status(lastResponse.statusCode).json(lastResponse.data);
+                    responseSent = true;
+                    return resolve();
+                }
+
                 return isRateLimited ? reject() : resolve();
             }),
+        setLastResponse: (statusCode: number, data: any) => {
+            lastResponse = { statusCode, data };
+        },
+        responseSent: () => responseSent,
     };
 }

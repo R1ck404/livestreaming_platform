@@ -47,7 +47,7 @@ export default function PopularStreamers() {
                                 title={stream.title}
                                 viewers={stream.viewers ?? 0}
                                 isLive={true}
-                                streamer={stream.expand.user.username}
+                                streamer={stream!.expand?.user?.username ?? ""}
                                 game={stream.game}
                                 image={stream.thumbnail}
                                 stream_id={stream.stream_key}

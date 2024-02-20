@@ -5,7 +5,7 @@ import { createServerClient } from "@/lib/pocketbase/createServerClient";
 import { recommendStreams } from "@/lib/algorithms/RecommendedStreams";
 
 const limiter = rateLimit({
-    interval: 60 * 1000,
+    interval: 30 * 1000,
     uniqueTokenPerInterval: 500,
 });
 
@@ -22,7 +22,14 @@ export default async function handler(
     }
 
     try {
-        await limiter.check(res, 50, "token"); // 50 requests per minute
+        await limiter.check(res, 2, "token");
+
+        if (limiter.responseSent()) {
+            console.log("Response has been sent");
+            return;
+        }
+
+        console.log("Fetching recommended streams");
 
         const fetch_live_or_all = should_be_live !== undefined ? `is_live=${should_be_live}` : "(is_live=false || is_live=true)";
         const user_metrics = await pocketbaseClient.collection("user_metrics").getList(1, 50, { filter: `user="${user_id}"` }).catch(() => null);
@@ -35,6 +42,7 @@ export default async function handler(
         const recommended_streams = await recommendStreams(user_metrics.items as any, streams.items as any, 3);
 
         res.status(200).json({ streams: recommended_streams });
+        limiter.setLastResponse(200, { streams: recommended_streams });
 
     } catch (e) {
         console.log(e);
