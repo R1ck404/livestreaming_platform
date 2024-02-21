@@ -28,12 +28,6 @@ export default function Page() {
                 }
 
                 await client.collection('streams').subscribe(stream.id, (new_stream) => {
-                    // const difference = deepComparison(stream, new_stream);
-
-                    // if (Object.keys(difference).length <= 0) {
-                    //     return;
-                    // }
-
                     setStream(stream);
                 });
             } catch (error) {
