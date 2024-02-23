@@ -31,7 +31,7 @@ export default function GamePreview(
     }, []);
 
     return (
-        <div className="flex flex-col overflow-hidden shadow-md space-y-1 rounded-lg w-full hover:border-accent hover:border cursor-pointer">
+        <div className="flex flex-col overflow-hidden shadow-md space-y-1 rounded-lg w-full hover:border-accent hover:border cursor-pointer bg-blend-saturation">
             <div className="h-96 w-full relative">
                 <Image src={image} alt={''} layout="fill" objectFit="cover" className='rounded-lg' />
                 <div className="absolute top-2 left-0 w-full flex justify-between">

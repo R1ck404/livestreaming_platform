@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { createBrowserClient } from '@/lib/pocketbase/createBrowserClient';
+import Link from 'next/link';
 import { useEffect, useState, useCallback } from 'react';
 
 type RecommendedStreamersSidebarProps = {
@@ -52,11 +53,12 @@ export default function RecommendedStreamersSidebar({ collapsed }: RecommendedSt
 
             {isClient && !isFetching && streams?.length > 0 && streams?.map((stream, i) => {
                 const user = stream.expand?.user;
+                const avatar = client.files.getUrl(user, user?.avatar);
                 return (
-                    <div key={i} className="flex items-center space-x-2">
+                    <Link key={i} className="flex items-center space-x-2" href={`/user/${user?.username}`}>
                         <Avatar className={`${stream?.is_live ? "p-[2px] ring-2 ring-accent" : ""}`}>
                             <AvatarFallback>{user?.username.charAt(0).toUpperCase()}</AvatarFallback>
-                            <AvatarImage src={user?.avatar} />
+                            <AvatarImage src={avatar} />
                         </Avatar>
 
                         {!collapsed && (
@@ -77,7 +79,7 @@ export default function RecommendedStreamersSidebar({ collapsed }: RecommendedSt
                                 )}
                             </>
                         )}
-                    </div>
+                    </Link>
                 )
             })}
         </>

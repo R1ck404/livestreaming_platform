@@ -16,6 +16,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import FLVPlayer from "../flv-player";
 import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
+import Link from "next/link";
 
 type StreamVideoProps = {
     stream_key: string | null;
@@ -74,7 +75,6 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
         if (!user_id) return;
 
         if (isFollowingStreamer) {
-            console.log('unfollowing');
             try {
                 const following = await client.collection('followers').getFullList({ filter: `follower="${user_id}" && following="${streamer?.id}"` });
                 await client.collection('followers').delete(following[0].id);
@@ -83,7 +83,6 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
             }
             setIsFollowingStreamer(false);
         } else {
-            console.log('following');
             try {
                 await client.collection('followers').create({ follower: user_id, following: streamer?.id });
 
@@ -119,7 +118,7 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
                     <div className="flex flex-col mt-4 w-full">
                         <h1 className="font-bold text-3xl">{title}</h1>
                         <div className="flex space-y-2 sm:space-y-0 sm:items-center mt-4 w-full flex-col sm:flex-row">
-                            <div className="flex items-center">
+                            <Link className="flex items-center" href={`/user/${streamer?.username}`}>
                                 <Avatar className="mr-2 border ring-2 ring-red-600 border-background m-0.5 relative">
                                     <AvatarImage src={streamer?.avatar} />
                                     <AvatarFallback className="bg-accent text-accent-content">{streamer?.username[0]}</AvatarFallback>
@@ -129,7 +128,7 @@ export default function StreamVideo({ stream_key, isLive, title, viewers, stream
                                     <h1 className="font-bold text-xl">{streamer?.username}</h1>
                                     <p className="text-sm text-stone-500">{streamer?.followers_amount} Followers</p>
                                 </div>
-                            </div>
+                            </Link>
                             <div className="flex w-full flex-row">
                                 <div className="flex sm:ml-6">
                                     <Tooltip>

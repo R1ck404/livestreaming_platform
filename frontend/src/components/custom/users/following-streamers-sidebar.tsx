@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { createBrowserClient } from '@/lib/pocketbase/createBrowserClient';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 type FollowingStreamersSidebarProps = {
@@ -27,6 +28,16 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
 
             setIsFetching(false);
 
+            const updatedUsersWithAvatar = await Promise.all(
+                followingUsers.map(async (user: { id: any; avatar: any; }) => {
+                    const avatar = client.files.getUrl(user, user?.avatar);
+                    user.avatar = avatar;
+                    return user;
+                })
+            );
+
+            setFollowingUsers(updatedUsersWithAvatar);
+
             const updatedUsers = await Promise.all(
                 followingUsers.map(async (user: { id: any; stream: any; }) => {
                     const stream = await client.collection('streams').getList(1, 3, { filter: `user = "${user.id}"` });
@@ -48,10 +59,10 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
             )}
 
             {isClient && !isFetching && followingUsers.map((user, i) => (
-                <div key={i} className="flex items-center space-x-2">
-                    <Avatar className={`${user.stream && user.stream.is_live ? "p-[2px] ring-2 ring-accent" : ""}`}>
-                        <AvatarFallback>{user.username.charAt(0).toUpperCase()}</AvatarFallback>
-                        <AvatarImage src={user.avatar} />
+                <Link key={i} className="flex items-center space-x-2" href={`/user/${user?.username}`}>
+                    <Avatar>
+                        <AvatarFallback>{user?.username.charAt(0).toUpperCase()}</AvatarFallback>
+                        <AvatarImage src={user?.avatar} />
                     </Avatar>
                     {!collapsed && (
                         <>
@@ -71,7 +82,7 @@ export default function FollowingStreamersSidebar({ collapsed }: FollowingStream
                             )}
                         </>
                     )}
-                </div>
+                </Link>
             ))}
         </>
     )
