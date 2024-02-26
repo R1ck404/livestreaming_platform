@@ -25,7 +25,6 @@ export default async function handler(
         await limiter.check(res, 2, "token");
 
         if (limiter.responseSent()) {
-            console.log("Response has been sent");
             return;
         }
 

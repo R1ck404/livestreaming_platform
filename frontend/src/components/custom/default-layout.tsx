@@ -10,6 +10,7 @@ type DefaultLayoutProps = {
     children: React.ReactNode;
     className?: string;
 }
+
 const client = createBrowserClient();
 
 export default function DefaultLayout({ children, className }: DefaultLayoutProps) {

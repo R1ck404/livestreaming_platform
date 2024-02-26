@@ -5,12 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
-import { toast } from "sonner"
-
+import { toast } from "sonner";
 import Link from "next/link";
 
-export default function Page() {
-
+export default function ClientPage() {
     const { push, replace } = useRouter();
     const pocketbase = createBrowserClient();
 

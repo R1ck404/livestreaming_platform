@@ -4,19 +4,16 @@ import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
-import { toast } from "sonner"
-import Link from "next/link";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { toast } from "sonner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 
-export default function Page() {
+export default function ClientPage() {
     const [currentPage, setCurrentPage] = useState("step_1");
     const [firstForm, setFirstForm] = useState({ email: "", password: "", confirm_password: "" });
     const [secondForm, setSecondForm] = useState({ username: "", biography: "" } as any);
     const { push, replace } = useRouter();
-    const pocketbase = createBrowserClient();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

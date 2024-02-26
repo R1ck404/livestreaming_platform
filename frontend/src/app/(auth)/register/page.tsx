@@ -1,12 +1,12 @@
 import ClientPage from "./page.client";
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-export default function Wallet() {
+export default function Page() {
     return (
         <ClientPage />
     )
 }
 
 export const metadata: Metadata = {
-    title: "Wallet"
-}
+    title: "Register"
+};

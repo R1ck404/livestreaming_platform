@@ -43,7 +43,6 @@ export default function PopularStreamersExplore() {
             });
 
             setStreams(data);
-            console.log(data);
         }
 
         fetchStreams();

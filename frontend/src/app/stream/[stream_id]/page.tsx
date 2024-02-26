@@ -42,6 +42,9 @@ export default function Page() {
 
     return (
         <DefaultLayout>
+            <title>
+                {stream !== null && stream?.exists === false ? 'Stream not found' : stream?.title ?? 'Loading stream'}
+            </title>
             <div className="p-6 flex flex-col">
                 {stream !== null && stream?.exists === false && (
                     <div className="flex justify-center items-center h-96">

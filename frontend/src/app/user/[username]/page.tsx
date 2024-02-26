@@ -133,6 +133,7 @@ export default function Page() {
 
     return (
         <DefaultLayout>
+            <title>{user?.username ?? "Loading..."}</title>
             <div className="relative w-full h-full">
                 <div className="w-full h-52 md:h-64 lg:h-80 xl:h-96 bg-accent relative flex flex-col items-center justify-center overflow-hidden space-y-8 z-0">
                     {Array(rows).fill('').map((_, rowIndex) => (
