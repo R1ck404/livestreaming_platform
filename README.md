@@ -60,20 +60,20 @@ This platform is continuously evolving, and there are several features and pages
 ### Missing Pages
 - **Privacy Policy**: A page dedicated to explaining how we handle user data and privacy.
 - **Terms of Service (ToS)**: Detailed terms outlining the use of our platform.
-- **Subscriptions**: A feature to allow users to subscribe to their favorite streamers for exclusive content.
-- **Wallet**: A digital wallet feature for users to manage their transactions and subscriptions.
-- **Settings**: A comprehensive settings page for users to customize their experience according to their preferences.
 
 ### Additional Functionalities
 - **Dark Mode**: An option for users to switch to a darker color theme to reduce eye strain and improve accessibility.
 - **Custom Themes**: Allowing users to customize and personalize their UI with themes beyond the standard and dark modes.
 - **Optimization and Responsiveness**: Many of our pages are currently not optimized for all devices and lack responsiveness. I am planning to enhance the UI and UX to ensure a seamless experience across all devices and screen sizes.
   
-### Ongoing Optimizations
+### Ongoing Changes
 The following areas are targeted for ongoing optimization and improvement:
 - **Performance Enhancements**: Continuous efforts to improve the platform's performance, reducing load times and ensuring smoother streaming experiences.
 - **Security Measures**: Further enhancements to security measures to protect user data and prevent unauthorized access.
 - **User Interface Improvements**: Regular updates to the UI to make it more intuitive and user-friendly, based on user feedback and usability testing.
+- **Subscriptions**: A feature to allow users to subscribe to their favorite streamers for exclusive content.
+- **Wallet**: A digital wallet feature for users to manage their transactions and subscriptions.
+- **Settings**: A comprehensive settings page for users to customize their experience according to their preferences.
 
 This roadmap is an open document, and we welcome contributions and suggestions from the community. Our goal is to create the best possible livestreaming platform that meets the needs of our users and exceeds their expectations.
 
