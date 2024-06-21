@@ -17,13 +17,17 @@ export function createBrowserClient() {
     }
 
     const createNewClient = () => {
-        return new PocketBase(
+        console.log("Creating new client");
+        const pb = new PocketBase(
             process.env.NEXT_PUBLIC_POCKETBASE_API_URL
         );
+
+        pb.authStore.loadFromCookie("pb_auth");
+        return pb;
     };
 
-    const _singletonClient = singletonClient ?? createNewClient();
-
+    const _singletonClient = singletonClient ?? createNewClient()
+    console.log("Singleton client", _singletonClient);
     if (typeof window === "undefined") return _singletonClient;
 
     if (!singletonClient) singletonClient = _singletonClient;

@@ -10,10 +10,7 @@ export function middleware(request: NextRequest) {
     const redirect_path = `http://127.0.0.1:3000/login`;
 
     const cookieStore = cookies();
-    console.log(cookieStore)
     const { authStore } = createServerClient(cookieStore);
-    console.log(authStore)
-    console.log("admin", authStore.isValid);
 
     if (!authStore.isValid) {
         return NextResponse.redirect(redirect_path);
