@@ -54,7 +54,7 @@ const SearchBar: FC = () => {
     };
 
     return (
-        <div className="relative w-12 sm:w-full" ref={fullRef}>
+        <div className="relative w-12 sm:w-full" ref={fullRef as any}>
             <input
                 type="text"
                 placeholder="Search"

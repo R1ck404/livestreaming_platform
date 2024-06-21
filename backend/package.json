@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
     "node-media-server": "^2.6.2",
     "pocketbase": "^0.21.1"
   }
