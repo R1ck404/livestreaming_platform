@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { createBrowserClient } from "@/lib/pocketbase/createBrowserClient";
 import { toast } from "sonner";
 import Link from "next/link";
-import { setCookie } from "cookies-next";
 
 export default function ClientPage() {
     const { push, replace } = useRouter();
@@ -29,13 +28,6 @@ export default function ClientPage() {
         });
 
         promise.then((user) => {
-            // setCookie("auth", user.token, { path: "/" });
-            //pocketbase_auth
-            // setCookie("pb_auth", user);
-            // localStorage.setItem("pb_auth", JSON.stringify(user));
-            // setCookie("pocketbase_auth", user);
-            // localStorage.setItem("pocketbase_auth", JSON.stringify(user));
-
             replace("/");
         });
     }

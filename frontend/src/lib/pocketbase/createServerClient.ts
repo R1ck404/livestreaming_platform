@@ -15,7 +15,7 @@ export function createServerClient(cookieStore?: ReadonlyRequestCookies) {
 
     const client = new PocketBase(
         process.env.NEXT_PUBLIC_POCKETBASE_API_URL
-    ); //as TypedPocketBase;
+    );
 
     if (cookieStore) {
         const authCookie = cookieStore.get("pb_auth");

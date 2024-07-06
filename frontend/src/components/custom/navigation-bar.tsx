@@ -93,13 +93,13 @@ export default function NavigationBar({ isUserAuthenticated }: NavigationBarProp
                                     <div className="flex space-x-2 items-center">
                                         <Avatar>
                                             <AvatarFallback>
-                                                XD
+                                                {client?.authStore.model?.username.charAt(0).toUpperCase()}
                                             </AvatarFallback>
                                             <AvatarImage src={""} />
                                         </Avatar>
 
                                         <span>
-                                            Username
+                                            {client?.authStore.model?.username}
                                         </span>
                                     </div>
                                 </DropdownMenuItem>

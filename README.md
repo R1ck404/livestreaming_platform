@@ -45,13 +45,7 @@ We have implemented a simple recommendation algorithm to suggest livestreams bas
 Livestreams are sorted based on their scores, with higher scores indicating higher relevance.
 
 ## Setup
-1. Clone this repository.
-2. Ensure that `JWT_SECRET`, `POCKETBASE_ADMIN_PASSWORD`, and `POCKETBASE_ADMIN_EMAIL` match in all `.env` files.
-3. Install dependencies for each component (`backend`, `database`, `frontend`).
-4. Run the backend server using `npm run start` within the `backend` directory.
-5. Install pocketbase in the database directory then start pocketbase by using `pocketbase serve` within the `database` directory.
-6. Import the database script `/database/pb_schema.json` into your pocketbase db.
-7. Start the frontend server by using `npm run dev` in the `frontend` directory (Not ready for production).
+[Installation docs](https://github.com/R1ck404/livestreaming_platform/blob/main/Installation.md)
 
 ## What Im Still Planning on Adding
 
