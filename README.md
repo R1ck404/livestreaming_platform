@@ -2,7 +2,7 @@
 
 Welcome to this livestreaming platform repository! This platform is designed to provide a seamless streaming experience for both streamers and viewers. Below you'll find essential information about the structure of our platform, its functionalities, and how to set it up.
 
-Want a custom version of this, bug free, finished, or do you want a fully custom livestreaming platform? check this out [Custom Development Offer](#custom-development-offer).
+If you're looking for a fully finished, bug-free version of this platform or a completely custom livestreaming solution, take a look at my [Custom Development Offer](#custom-development-offer).
 
 ## Table of Contents
 1. [Images](#images)
