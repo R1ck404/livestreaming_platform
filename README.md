@@ -2,6 +2,8 @@
 
 Welcome to this livestreaming platform repository! This platform is designed to provide a seamless streaming experience for both streamers and viewers. Below you'll find essential information about the structure of our platform, its functionalities, and how to set it up.
 
+Want a custom version of this, bug free, finished, or do you want a fully custom livestreaming platform? check this out [Custom Development Offer](#custom-development-offer).
+
 ## Table of Contents
 1. [Images](#images)
 2. [Overview](#overview)
@@ -77,6 +79,14 @@ Stay tuned for updates as we continue to build and improve our platform. Your su
 - Our livestreaming system uses JWT keys to connect livestreams (e.g., OBS) to users. The backend validates these keys, and incorrect keys will result in users being kicked from the streaming session.
 - JWT keys expire every hour.
 - This platform is a work in progress. While it supports major functionalities such as streaming and dashboard features, optimizations and additional functionalities are still needed.
+
+## Custom Development Offer
+After receiving a request to add specific features to this platform, I realized there is interest in a more complete solution. Therefore, I am offering custom development services:
+- Enhanced Livestreaming Platform: I can develop a fully finished, bug-free version of this platform for $1,000 - $2,000.
+- Fully Custom Livestreaming Platform: I can create a bespoke livestreaming platform tailored to your specific needs for $4,000 - $8,000.
+
+Contact me through [Discord](https://discordapp.com/users/1018787870082867241) or my [Portfolio](https://www.rickhuijser.com/contact)
+
 
 *Note: The development of these features and pages will be done with the community in mind, ensuring that we provide a platform that is inclusive, accessible, and enjoyable for everyone.*
 
